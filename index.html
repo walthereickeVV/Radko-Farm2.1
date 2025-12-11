@@ -1,1117 +1,0 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl" class="dark-theme">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Radko-Pharm | الصيدلية الذكية - العشرين، مصر</title>
-    
-    <!-- Meta теги для SEO и соцсетей -->
-    <meta name="description" content="Radko-Pharm - أول صيدلية ذكية في مصر بمستشار AI وتتبع رقمي للعلاج">
-    <meta name="keywords" content="صيدلية, أدوية, مصر, العشرين, مستشار طبي, AI, رادكو فارم">
-    <meta name="author" content="رائد محمود خيري أحمد">
-    <meta property="og:title" content="Radko-Pharm - الصيدلية الذكية">
-    <meta property="og:description" content="أول صيدلية في مصر مزودة بمستشار ذكي">
-    <meta property="og:image" content="https://walthereickevv.github.io/radko-pharm/assets/images/og-image.jpg">
-    <meta property="og:url" content="https://walthereickevv.github.io/radko-pharm">
-    
-    <!-- PWA поддержка -->
-    <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#4CAF50">
-    <link rel="apple-touch-icon" href="assets/icons/icon-192.png">
-    
-    <!-- Иконки и шрифты -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900&family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-    
-    <!-- Стили -->
-    <link rel="stylesheet" href="style.css">
-    
-    <!-- Фавикон -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22 fill=%22%234CAF50%22>💊</text></svg>">
-    
-    <!-- Preload критичных ресурсов -->
-    <link rel="preload" href="style.css" as="style">
-    <link rel="preload" href="script.js" as="script">
-</head>
-<body>
-    <!-- 🎯 Быстрый доступ -->
-    <div class="quick-access">
-        <button class="quick-btn whatsapp-btn" id="whatsapp-quick">
-            <i class="fab fa-whatsapp"></i>
-            <span class="tooltip">راسلنا على واتساب</span>
-        </button>
-        <button class="quick-btn call-btn" id="call-quick">
-            <i class="fas fa-phone"></i>
-            <span class="tooltip">اتصل بنا</span>
-        </button>
-        <button class="quick-btn cart-quick" id="cart-quick">
-            <i class="fas fa-shopping-cart"></i>
-            <span class="cart-badge">0</span>
-            <span class="tooltip">سلة المشتريات</span>
-        </button>
-        <button class="quick-btn theme-toggle" id="theme-toggle">
-            <i class="fas fa-moon"></i>
-            <span class="tooltip">تبديل السمة</span>
-        </button>
-    </div>
-
-    <!-- 🌐 Языковой переключатель (плавающий) -->
-    <div class="language-float">
-        <div class="current-lang">
-            <span class="lang-flag">🇪🇬</span>
-            <span>العربية</span>
-        </div>
-        <div class="lang-dropdown">
-            <button class="lang-option" data-lang="ar">
-                <span class="lang-flag">🇪🇬</span>
-                <span>العربية</span>
-            </button>
-            <button class="lang-option" data-lang="en">
-                <span class="lang-flag">🇬🇧</span>
-                <span>English</span>
-            </button>
-            <button class="lang-option" data-lang="ru">
-                <span class="lang-flag">🇷🇺</span>
-                <span>Русский</span>
-            </button>
-        </div>
-    </div>
-
-    <!-- 🔮 Прелоадер с 3D анимацией -->
-    <div class="preloader-3d">
-        <div class="molecule-loader">
-            <div class="atom"></div>
-            <div class="atom"></div>
-            <div class="atom"></div>
-            <div class="atom"></div>
-            <div class="atom"></div>
-            <div class="atom"></div>
-        </div>
-        <div class="loading-text">
-            <h2>Radko-Pharm</h2>
-            <p>جاري تحميل تجربة الصيدلية الذكية...</p>
-            <div class="loading-bar">
-                <div class="loading-progress"></div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 🧭 Навигация (современная) -->
-    <nav class="glass-navbar">
-        <div class="nav-container">
-            <!-- Логотип с анимацией -->
-            <div class="logo-container">
-                <div class="logo-icon">
-                    <div class="pill-rotate">
-                        <div class="pill"></div>
-                        <div class="pill"></div>
-                    </div>
-                    <div class="plus-sign">+</div>
-                </div>
-                <div class="logo-text">
-                    <h1>Radko<span class="pharm">Pharm</span></h1>
-                    <p class="tagline">الصيدلية الذكية لمستقبل أفضل</p>
-                </div>
-            </div>
-
-            <!-- Основное меню -->
-            <div class="main-menu">
-                <a href="#home" class="nav-item active" data-section="home">
-                    <i class="fas fa-home"></i>
-                    <span>الرئيسية</span>
-                </a>
-                <a href="#products" class="nav-item" data-section="products">
-                    <i class="fas fa-capsules"></i>
-                    <span>الأدوية</span>
-                </a>
-                <a href="#ai-doctor" class="nav-item" data-section="ai-doctor">
-                    <i class="fas fa-robot"></i>
-                    <span>المستشار الذكي</span>
-                </a>
-                <a href="#services" class="nav-item" data-section="services">
-                    <i class="fas fa-concierge-bell"></i>
-                    <span>الخدمات</span>
-                </a>
-                <a href="#reviews" class="nav-item" data-section="reviews">
-                    <i class="fas fa-star"></i>
-                    <span>التقييمات</span>
-                </a>
-                <a href="#contact" class="nav-item" data-section="contact">
-                    <i class="fas fa-address-book"></i>
-                    <span>اتصل بنا</span>
-                </a>
-            </div>
-
-            <!-- Пользовательские действия -->
-            <div class="user-actions">
-                <button class="btn-search" id="search-toggle">
-                    <i class="fas fa-search"></i>
-                </button>
-                <div class="user-profile">
-                    <div class="avatar">
-                        <i class="fas fa-user-md"></i>
-                    </div>
-                    <div class="user-info">
-                        <span class="welcome">مرحباً بك!</span>
-                        <a href="#login" class="login-link">تسجيل الدخول</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Мобильное меню -->
-            <button class="menu-toggle" id="menu-toggle">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </button>
-        </div>
-
-        <!-- Поисковая панель -->
-        <div class="search-panel" id="search-panel">
-            <div class="search-container">
-                <input type="text" class="search-input" placeholder="ابحث عن دواء، مرض، أو استشارة...">
-                <button class="search-btn">
-                    <i class="fas fa-search"></i>
-                    بحث
-                </button>
-                <div class="search-suggestions">
-                    <span class="suggestion-tag">باراسيتامول</span>
-                    <span class="suggestion-tag">أموكسيسيلين</span>
-                    <span class="suggestion-tag">فيتامين سي</span>
-                    <span class="suggestion-tag">ضغط الدم</span>
-                </div>
-            </div>
-        </div>
-    </nav>
-
-    <!-- 🏠 Герой-секция (полностью переработанная) -->
-    <section id="home" class="hero-section parallax-section">
-        <div class="hero-bg">
-            <canvas id="particles-canvas"></canvas>
-            <div class="gradient-overlay"></div>
-        </div>
-        
-        <div class="hero-content">
-            <!-- Анимированный баннер -->
-            <div class="hero-badge animated-badge">
-                <span class="badge-text">🏆 الأفضل في مصر 2024</span>
-                <div class="badge-sparkle"></div>
-            </div>
-            
-            <!-- Основной заголовок с анимацией -->
-            <div class="hero-title-container">
-                <h1 class="hero-title">
-                    <span class="title-line">صيدلية <span class="highlight">المستقبل</span></span>
-                    <span class="title-line">في <span class="location-highlight">العشرين</span></span>
-                </h1>
-                <div class="title-underline"></div>
-            </div>
-            
-            <!-- Подзаголовок -->
-            <p class="hero-subtitle">
-                أول صيدلية ذكية في مصر مزودة بمستشار AI متطور، تتبع رقمي للعلاج، 
-                وخدمات توصيل فورية 24/7
-            </p>
-            
-            <!-- Интерактивная статистика -->
-            <div class="live-stats">
-                <div class="stat-card glowing-card">
-                    <div class="stat-icon">
-                        <i class="fas fa-prescription-bottle-alt"></i>
-                    </div>
-                    <div class="stat-content">
-                        <h3 class="stat-number" data-count="1500">0</h3>
-                        <p class="stat-label">منتج طبي</p>
-                    </div>
-                    <div class="stat-trend">
-                        <i class="fas fa-arrow-up"></i> 12%
-                    </div>
-                </div>
-                
-                <div class="stat-card glowing-card">
-                    <div class="stat-icon">
-                        <i class="fas fa-user-md"></i>
-                    </div>
-                    <div class="stat-content">
-                        <h3 class="stat-number" data-count="24">0</h3>
-                        <p class="stat-label">خدمة 24/7</p>
-                    </div>
-                    <div class="stat-trend">
-                        <i class="fas fa-bolt"></i> مباشر
-                    </div>
-                </div>
-                
-                <div class="stat-card glowing-card">
-                    <div class="stat-icon">
-                        <i class="fas fa-smile"></i>
-                    </div>
-                    <div class="stat-content">
-                        <h3 class="stat-number" data-count="5000">0</h3>
-                        <p class="stat-label">عميل راضٍ</p>
-                    </div>
-                    <div class="stat-trend">
-                        <i class="fas fa-star"></i> 4.9/5
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Призыв к действию -->
-            <div class="hero-actions">
-                <button class="cta-btn primary-cta" id="start-consultation">
-                    <i class="fas fa-robot"></i>
-                    <span>ابدأ استشارة مجانية</span>
-                    <div class="cta-ripple"></div>
-                </button>
-                
-                <button class="cta-btn secondary-cta" id="explore-products">
-                    <i class="fas fa-store"></i>
-                    <span>تصفح المتجر</span>
-                </button>
-                
-                <button class="cta-btn video-cta" id="watch-demo">
-                    <i class="fas fa-play-circle"></i>
-                    <span>شاهد الفيديو التعريفي</span>
-                </button>
-            </div>
-            
-            <!-- Анимированные иконки преимуществ -->
-            <div class="hero-features">
-                <div class="feature-item">
-                    <div class="feature-icon">
-                        <i class="fas fa-shipping-fast"></i>
-                    </div>
-                    <span>توصيل في 30 دقيقة</span>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-icon">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <span>ضمان الجودة 100%</span>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-icon">
-                        <i class="fas fa-prescription"></i>
-                    </div>
-                    <span>وصفات رقمية</span>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-icon">
-                        <i class="fas fa-video"></i>
-                    </div>
-                    <span>استشارات فيديو</span>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Анимированные элементы фона -->
-        <div class="floating-elements">
-            <div class="floating-pill pill-1"></div>
-            <div class="floating-pill pill-2"></div>
-            <div class="floating-pill pill-3"></div>
-            <div class="dna-helix"></div>
-            <div class="medical-cross"></div>
-        </div>
-        
-        <!-- Прокрутка вниз -->
-        <div class="scroll-indicator">
-            <div class="mouse">
-                <div class="wheel"></div>
-            </div>
-            <span>انتقل لاكتشاف المزيد</span>
-        </div>
-    </section>
-
-    <!-- 👨‍⚕️ Секция владельца (с фото) -->
-    <section class="owner-section glass-section">
-        <div class="section-header">
-            <h2 class="section-title">👑 مالك الصيدلية</h2>
-            <p class="section-subtitle">خبرة تمتد لأكثر من 15 عاماً في المجال الطبي</p>
-            <div class="title-decoration">
-                <div class="decoration-line"></div>
-                <div class="decoration-dot"></div>
-                <div class="decoration-line"></div>
-            </div>
-        </div>
-        
-        <div class="owner-profile">
-            <!-- Фото владельца с анимацией -->
-            <div class="owner-photo-container">
-                <div class="photo-frame">
-                    <div class="photo-glow"></div>
-                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=RaedMahmoud&backgroundColor=4CAF50&hair=short&facialHair=beard&glasses=round" 
-                         alt="رائد محمود خيري أحمد" 
-                         class="owner-photo"
-                         id="owner-photo">
-                    <div class="verified-badge">
-                        <i class="fas fa-check-circle"></i>
-                        <span>مرخص</span>
-                    </div>
-                </div>
-                
-                <!-- Контактная информация -->
-                <div class="contact-buttons">
-                    <a href="tel:+201275929754" class="contact-btn phone-btn">
-                        <i class="fas fa-phone-alt"></i>
-                        <span>+20 127 592 9754</span>
-                    </a>
-                    <button class="contact-btn whatsapp-btn" id="owner-whatsapp">
-                        <i class="fab fa-whatsapp"></i>
-                        <span>محادثة مباشرة</span>
-                    </button>
-                </div>
-            </div>
-            
-            <!-- Информация о владельце -->
-            <div class="owner-info">
-                <div class="owner-header">
-                    <h3 class="owner-name">رائد محمود خيري أحمد</h3>
-                    <p class="owner-name-en">Raed Mahmoud Kheiry Ahmed</p>
-                    <div class="owner-title">
-                        <span class="title-badge">صيدلي أول</span>
-                        <span class="title-badge">خبير مستحضرات طبية</span>
-                    </div>
-                </div>
-                
-                <div class="owner-details">
-                    <div class="detail-item">
-                        <i class="fas fa-graduation-cap"></i>
-                        <div>
-                            <h4>المؤهلات العلمية</h4>
-                            <p>بكالوريوس الصيدلة - جامعة القاهرة</p>
-                            <p>ماجستير في الإدارة الصيدلانية</p>
-                        </div>
-                    </div>
-                    
-                    <div class="detail-item">
-                        <i class="fas fa-award"></i>
-                        <div>
-                            <h4>الشهادات والتراخيص</h4>
-                            <p>رخصة مزاولة المهنة: <strong>JT5179743</strong></p>
-                            <p>عضو الجمعية المصرية للصيادلة</p>
-                        </div>
-                    </div>
-                    
-                    <div class="detail-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <div>
-                            <h4>العنوان</h4>
-                            <p>عمارة حفرالباطن، شقة ٥٠٢</p>
-                            <p>الحمام - محافظة مطروح، مصر</p>
-                        </div>
-                    </div>
-                    
-                    <div class="detail-item">
-                        <i class="fas fa-history"></i>
-                        <div>
-                            <h4>الخبرة</h4>
-                            <p>١٥ عاماً في المجال الصيدلي</p>
-                            <p>متخصص في الأدوية والمستحضرات الطبية</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Цитата владельца -->
-                <div class="owner-quote">
-                    <i class="fas fa-quote-left"></i>
-                    <p class="quote-text">
-                        "رسالتنا ليست فقط بيع الأدوية، بل تقديم رعاية صحية متكاملة 
-                        وخدمة متميزة تجعل Radko-Pharm وجهتك الأولى للصحة والعافية."
-                    </p>
-                    <i class="fas fa-quote-right"></i>
-                </div>
-                
-                <!-- Социальные сети -->
-                <div class="owner-social">
-                    <a href="#" class="social-link">
-                        <i class="fab fa-facebook-f"></i>
-                    </a>
-                    <a href="#" class="social-link">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a href="#" class="social-link">
-                        <i class="fab fa-linkedin-in"></i>
-                    </a>
-                    <a href="#" class="social-link">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 💊 Секция продуктов (супер современная) -->
-    <section id="products" class="products-section">
-        <div class="section-header">
-            <h2 class="section-title">💊 صيدلية Radko-Pharm الرقمية</h2>
-            <p class="section-subtitle">أكثر من 1500 منتج طبي بأعلى جودة وأفضل الأسعار</p>
-        </div>
-        
-        <!-- Умные фильтры -->
-        <div class="smart-filters">
-            <div class="filter-search">
-                <input type="text" class="smart-search" placeholder="ابحث عن دواء بالاسم، المادة الفعالة، أو المرض...">
-                <button class="search-voice">
-                    <i class="fas fa-microphone"></i>
-                </button>
-            </div>
-            
-            <div class="filter-tags">
-                <div class="tags-container">
-                    <button class="tag active" data-category="all">الكل</button>
-                    <button class="tag" data-category="antibiotics">
-                        <i class="fas fa-bacteria"></i> مضادات حيوية
-                    </button>
-                    <button class="tag" data-category="painkillers">
-                        <i class="fas fa-head-side-virus"></i> مسكنات
-                    </button>
-                    <button class="tag" data-category="vitamins">
-                        <i class="fas fa-apple-alt"></i> فيتامينات
-                    </button>
-                    <button class="tag" data-category="chronic">
-                        <i class="fas fa-heartbeat"></i> أمراض مزمنة
-                    </button>
-                    <button class="tag" data-category="children">
-                        <i class="fas fa-baby"></i> أطفال
-                    </button>
-                    <button class="tag" data-category="skincare">
-                        <i class="fas fa-spa"></i> العناية بالبشرة
-                    </button>
-                </div>
-            </div>
-            
-            <div class="filter-sort">
-                <select class="sort-select">
-                    <option value="popular">الأكثر شيوعاً</option>
-                    <option value="price-low">السعر: من الأقل للأعلى</option>
-                    <option value="price-high">السعر: من الأعلى للأقل</option>
-                    <option value="newest">الأحدث</option>
-                    <option value="discount">أفضل العروض</option>
-                </select>
-            </div>
-        </div>
-        
-        <!-- Продукты с 3D эффектами -->
-        <div class="products-3d-container" id="products-container">
-            <!-- Товары будут загружены через JS -->
-        </div>
-        
-        <!-- Кнопка загрузки еще -->
-        <div class="load-more-container">
-            <button class="load-more-btn" id="load-more">
-                <span>تحميل المزيد</span>
-                <div class="loading-dots">
-                    <div class="dot"></div>
-                    <div class="dot"></div>
-                    <div class="dot"></div>
-                </div>
-            </button>
-        </div>
-    </section>
-
-    <!-- 🏥 AI Доктор (совершенно новый раздел) -->
-    <section id="ai-doctor" class="ai-doctor-section">
-        <div class="ai-container">
-            <!-- Левая часть: AI Аватар -->
-            <div class="ai-avatar-section">
-                <div class="ai-avatar-3d">
-                    <div class="avatar-circle">
-                        <div class="avatar-face">
-                            <div class="avatar-eyes">
-                                <div class="eye left-eye"></div>
-                                <div class="eye right-eye"></div>
-                            </div>
-                            <div class="avatar-smile"></div>
-                        </div>
-                    </div>
-                    <div class="ai-ring ring-1"></div>
-                    <div class="ai-ring ring-2"></div>
-                    <div class="ai-ring ring-3"></div>
-                </div>
-                
-                <div class="ai-status">
-                    <div class="status-indicator online">
-                        <div class="pulse"></div>
-                        <span>متصل الآن</span>
-                    </div>
-                    <p class="ai-name">د. DeepSeek AI</p>
-                    <p class="ai-specialty">المستشار الطبي الذكي</p>
-                </div>
-                
-                <div class="ai-capabilities">
-                    <h4>القدرات:</h4>
-                    <div class="caps-grid">
-                        <div class="cap-item">
-                            <i class="fas fa-prescription"></i>
-                            <span>تحليل الوصفات</span>
-                        </div>
-                        <div class="cap-item">
-                            <i class="fas fa-pills"></i>
-                            <span>تفاعل الأدوية</span>
-                        </div>
-                        <div class="cap-item">
-                            <i class="fas fa-diagnoses"></i>
-                            <span>تشخيص أولي</span>
-                        </div>
-                        <div class="cap-item">
-                            <i class="fas fa-ambulance"></i>
-                            <span>طوارئ</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Правая часть: Чат-интерфейс -->
-            <div class="ai-chat-section">
-                <div class="chat-header">
-                    <div class="chat-title">
-                        <h3>المستشار الطبي الذكي</h3>
-                        <p>مدعوم بتقنيات DeepSeek المتقدمة</p>
-                    </div>
-                    <div class="chat-actions">
-                        <button class="chat-action-btn" title="تاريخ المحادثات">
-                            <i class="fas fa-history"></i>
-                        </button>
-                        <button class="chat-action-btn" title="مسح المحادثة">
-                            <i class="fas fa-trash-alt"></i>
-                        </button>
-                        <button class="chat-action-btn" title="إعدادات">
-                            <i class="fas fa-cog"></i>
-                        </button>
-                    </div>
-                </div>
-                
-                <div class="chat-body" id="chat-body">
-                    <!-- Приветственное сообщение -->
-                    <div class="message ai-message welcome-msg">
-                        <div class="message-avatar">
-                            <i class="fas fa-robot"></i>
-                        </div>
-                        <div class="message-content">
-                            <h4>مرحباً! أنا د. DeepSeek</h4>
-                            <p>أنا مساعدك الطبي الذكي. يمكنني مساعدتك في:</p>
-                            <ul class="ai-help-list">
-                                <li>🩺 تفسير الأعراض والتشخيص الأولي</li>
-                                <li>💊 معلومات عن الأدوية والجرعات</li>
-                                <li>⚠️ تنبيهات تفاعل الأدوية</li>
-                                <li>📋 نصائح صحية مخصصة</li>
-                                <li>🏥 توجيه للطوارئ عند الحاجة</li>
-                            </ul>
-                            <p>كيف يمكنني مساعدتك اليوم؟</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Быстрые действия -->
-                <div class="quick-actions">
-                    <button class="quick-action-btn" data-action="symptoms">
-                        <i class="fas fa-thermometer"></i>
-                        <span>تشخيص الأعراض</span>
-                    </button>
-                    <button class="quick-action-btn" data-action="drugs">
-                        <i class="fas fa-pills"></i>
-                        <span>معلومات دواء</span>
-                    </button>
-                    <button class="quick-action-btn" data-action="emergency">
-                        <i class="fas fa-ambulance"></i>
-                        <span>حالة طارئة</span>
-                    </button>
-                    <button class="quick-action-btn" data-action="appointment">
-                        <i class="fas fa-calendar-check"></i>
-                        <span>حجز موعد</span>
-                    </button>
-                </div>
-                
-                <!-- Поле ввода -->
-                <div class="chat-input-container">
-                    <div class="input-options">
-                        <button class="input-option" title="إضافة صورة">
-                            <i class="fas fa-camera"></i>
-                        </button>
-                        <button class="input-option" title="إضافة ملف">
-                            <i class="fas fa-paperclip"></i>
-                        </button>
-                        <button class="input-option" title="التعرف على الصوت">
-                            <i class="fas fa-microphone"></i>
-                        </button>
-                    </div>
-                    <textarea class="chat-input" 
-                              placeholder="اكتب استفسارك الطبي هنا... (يمكنك إرفاق صور للمستندات الطبية)"
-                              rows="2"></textarea>
-                    <button class="send-btn" id="send-ai-message">
-                        <i class="fas fa-paper-plane"></i>
-                        <span>إرسال</span>
-                    </button>
-                </div>
-                
-                <!-- Предупреждение -->
-                <div class="ai-disclaimer">
-                    <i class="fas fa-exclamation-triangle"></i>
-                    <p>
-                        <strong>ملاحظة هامة:</strong> هذه استشارة أولية فقط ولا تغني عن زيارة الطبيب. 
-                        للطوارئ الطبية، اتصل فوراً على 123 أو 115.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 🚚 Раздел услуг -->
-    <section id="services" class="services-section">
-        <div class="section-header">
-            <h2 class="section-title">🚀 خدماتنا المتكاملة</h2>
-            <p class="section-subtitle">نقدم حلولاً صحية متكاملة تغطي جميع احتياجاتك</p>
-        </div>
-        
-        <div class="services-grid">
-            <div class="service-card">
-                <div class="service-icon">
-                    <div class="icon-bg"></div>
-                    <i class="fas fa-shipping-fast"></i>
-                </div>
-                <h3>توصيل فوري</h3>
-                <p>توصيل الأدوية خلال 30 دقيقة في العشرين وضواحيها</p>
-                <div class="service-features">
-                    <span><i class="fas fa-check"></i> تتبع مباشر</span>
-                    <span><i class="fas fa-check"></i> 24/7</span>
-                    <span><i class="fas fa-check"></i> مجاني فوق 200 ج</span>
-                </div>
-                <button class="service-btn">اطلب الآن</button>
-            </div>
-            
-            <div class="service-card">
-                <div class="service-icon">
-                    <div class="icon-bg"></div>
-                    <i class="fas fa-prescription"></i>
-                </div>
-                <h3>وصفات رقمية</h3>
-                <p>تحويل وصفاتك الورقية إلى رقمية وحفظها في سجلك الصحي</p>
-                <div class="service-features">
-                    <span><i class="fas fa-check"></i> تخزين آمن</span>
-                    <span><i class="fas fa-check"></i> تجديد تلقائي</span>
-                    <span><i class="fas fa-check"></i> تنبيهات الجرعات</span>
-                </div>
-                <button class="service-btn">رفع وصفة</button>
-            </div>
-            
-            <div class="service-card">
-                <div class="service-icon">
-                    <div class="icon-bg"></div>
-                    <i class="fas fa-user-md"></i>
-                </div>
-                <h3>استشارات عن بعد</h3>
-                <p>استشارات فيديو مع أطباء متخصصين في جميع المجالات</p>
-                <div class="service-features">
-                    <span><i class="fas fa-check"></i> 24/7</span>
-                    <span><i class="fas fa-check"></i> متعدد التخصصات</span>
-                    <span><i class="fas fa-check"></i> تسجيل الجلسات</span>
-                </div>
-                <button class="service-btn">احجز استشارة</button>
-            </div>
-            
-            <div class="service-card">
-                <div class="service-icon">
-                    <div class="icon-bg"></div>
-                    <i class="fas fa-chart-line"></i>
-                </div>
-                <h3>تتبع صحتي</h3>
-                <p>منصة رقمية لتتبع حالتك الصحية وتاريخ الأدوية</p>
-                <div class="service-features">
-                    <span><i class="fas fa-check"></i> رسوم بيانية</span>
-                    <span><i class="fas fa-check"></i> تقارير شهرية</span>
-                    <span><i class="fas fa-check"></i> مشاركة مع الطبيب</span>
-                </div>
-                <button class="service-btn">ابدأ التتبع</button>
-            </div>
-        </div>
-        
-        <!-- Трекер заказов в реальном времени -->
-        <div class="live-tracker">
-            <div class="tracker-header">
-                <h3>🚚 تتبع الطلبات الحي</h3>
-                <div class="tracker-stats">
-                    <span class="stat"><i class="fas fa-motorcycle"></i> 12 في الطريق</span>
-                    <span class="stat"><i class="fas fa-check-circle"></i> 45 تم التوصيل</span>
-                </div>
-            </div>
-            <div class="tracker-map" id="tracker-map">
-                <!-- Здесь будет карта с курьерами -->
-            </div>
-        </div>
-    </section>
-
-    <!-- ⭐ Раздел отзывов (интерактивный) -->
-    <section id="reviews" class="reviews-section">
-        <div class="section-header">
-            <h2 class="section-title">⭐ آراء عملائنا</h2>
-            <p class="section-subtitle">ثقة أكثر من 5000 عميل تجعلنا الأفضل</p>
-        </div>
-        
-        <!-- Общий рейтинг -->
-        <div class="overall-rating">
-            <div class="rating-circle">
-                <div class="rating-number">4.9</div>
-                <div class="rating-stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-                <div class="rating-total">من 532 تقييم</div>
-            </div>
-            
-            <div class="rating-bars">
-                <div class="rating-bar">
-                    <span>5 نجوم</span>
-                    <div class="bar">
-                        <div class="fill" style="width: 85%"></div>
-                    </div>
-                    <span>85%</span>
-                </div>
-                <div class="rating-bar">
-                    <span>4 نجوم</span>
-                    <div class="bar">
-                        <div class="fill" style="width: 10%"></div>
-                    </div>
-                    <span>10%</span>
-                </div>
-                <div class="rating-bar">
-                    <span>3 نجوم</span>
-                    <div class="bar">
-                        <div class="fill" style="width: 3%"></div>
-                    </div>
-                    <span>3%</span>
-                </div>
-                <div class="rating-bar">
-                    <span>2 نجوم</span>
-                    <div class="bar">
-                        <div class="fill" style="width: 1%"></div>
-                    </div>
-                    <span>1%</span>
-                </div>
-                <div class="rating-bar">
-                    <span>1 نجمة</span>
-                    <div class="bar">
-                        <div class="fill" style="width: 1%"></div>
-                    </div>
-                    <span>1%</span>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Отзывы -->
-        <div class="reviews-container swiper" id="reviews-swiper">
-            <div class="swiper-wrapper">
-                <!-- Отзывы будут добавлены через JS -->
-            </div>
-            <div class="swiper-pagination"></div>
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
-        </div>
-        
-        <!-- Добавление отзыва -->
-        <div class="add-review-card">
-            <h3>شاركنا تجربتك</h3>
-            <div class="review-form">
-                <div class="rating-input">
-                    <div class="stars-input">
-                        <i class="far fa-star" data-rating="1"></i>
-                        <i class="far fa-star" data-rating="2"></i>
-                        <i class="far fa-star" data-rating="3"></i>
-                        <i class="far fa-star" data-rating="4"></i>
-                        <i class="far fa-star" data-rating="5"></i>
-                    </div>
-                    <span class="rating-text">قيم تجربتك</span>
-                </div>
-                <div class="form-row">
-                    <input type="text" class="review-input" placeholder="اسمك">
-                    <input type="text" class="review-input" placeholder="عنوان التعليق">
-                </div>
-                <textarea class="review-textarea" placeholder="اكتب تجربتك مع Radko-Pharm..."></textarea>
-                <div class="form-actions">
-                    <button class="btn-cancel">إلغاء</button>
-                    <button class="btn-submit">نشر التقييم</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 📍 Контакты и карта -->
-    <section id="contact" class="contact-section">
-        <div class="contact-container">
-            <div class="contact-info">
-                <h2 class="contact-title">📍 اتصل بنا</h2>
-                <div class="contact-details">
-                    <div class="contact-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <div>
-                            <h4>العنوان</h4>
-                            <p>العشرين، مدينة العاشر من رمضان، مصر</p>
-                            <p>عمارة حفرالباطن، شقة ٥٠٢</p>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-item">
-                        <i class="fas fa-phone-alt"></i>
-                        <div>
-                            <h4>الهاتف</h4>
-                            <p>+20 127 592 9754</p>
-                            <p>الدعم الفني: 19011</p>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-item">
-                        <i class="fas fa-envelope"></i>
-                        <div>
-                            <h4>البريد الإلكتروني</h4>
-                            <p>info@radko-pharm.com</p>
-                            <p>support@radko-pharm.com</p>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-item">
-                        <i class="fas fa-clock"></i>
-                        <div>
-                            <h4>ساعات العمل</h4>
-                            <p>24 ساعة طوال الأسبوع</p>
-                            <p>خدمة الطوارئ: متاحة دائماً</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Форма обратной связи -->
-                <div class="contact-form">
-                    <h3>أرسل رسالة</h3>
-                    <form id="contact-form">
-                        <div class="form-group">
-                            <input type="text" placeholder="اسمك الكامل" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" placeholder="بريدك الإلكتروني" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="tel" placeholder="هاتفك" required>
-                        </div>
-                        <div class="form-group">
-                            <textarea placeholder="رسالتك..." rows="4" required></textarea>
-                        </div>
-                        <button type="submit" class="submit-btn">
-                            <i class="fas fa-paper-plane"></i>
-                            إرسال الرسالة
-                        </button>
-                    </form>
-                </div>
-            </div>
-            
-            <!-- Карта -->
-            <div class="contact-map">
-                <div class="map-container" id="map"></div>
-                <div class="map-overlay">
-                    <div class="overlay-content">
-                        <h4><i class="fas fa-car"></i> كيفية الوصول</h4>
-                        <p>على الطريق الرئيسي بجوار مسجد الرحمن</p>
-                        <button class="directions-btn">
-                            <i class="fas fa-directions"></i>
-                            احصل على اتجاهات
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 📱 Футер -->
-    <footer class="footer">
-        <div class="footer-top">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <div class="footer-logo">
-                        <div class="logo">
-                            <i class="fas fa-pills"></i>
-                            <span>Radko<span class="pharm">Pharm</span></span>
-                        </div>
-                        <p class="footer-tagline">صيدلية المستقبل بين يديك</p>
-                        <p class="footer-description">
-                            أول صيدلية ذكية في مصر تجمع بين الخبرة البشرية 
-                            وتقنيات الذكاء الاصطناعي لخدمتك على مدار الساعة.
-                        </p>
-                    </div>
-                    <div class="app-badges">
-                        <button class="app-btn">
-                            <i class="fab fa-google-play"></i>
-                            <div>
-                                <span>حمله من</span>
-                                <strong>Google Play</strong>
-                            </div>
-                        </button>
-                        <button class="app-btn">
-                            <i class="fab fa-app-store"></i>
-                            <div>
-                                <span>حمله من</span>
-                                <strong>App Store</strong>
-                            </div>
-                        </button>
-                    </div>
-                </div>
-                
-                <div class="footer-col">
-                    <h4>روابط سريعة</h4>
-                    <ul class="footer-links">
-                        <li><a href="#home"><i class="fas fa-chevron-left"></i> الرئيسية</a></li>
-                        <li><a href="#products"><i class="fas fa-chevron-left"></i> جميع المنتجات</a></li>
-                        <li><a href="#ai-doctor"><i class="fas fa-chevron-left"></i> المستشار الذكي</a></li>
-                        <li><a href="#services"><i class="fas fa-chevron-left"></i> خدماتنا</a></li>
-                        <li><a href="#reviews"><i class="fas fa-chevron-left"></i> آراء العملاء</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-col">
-                    <h4>معلومات مهمة</h4>
-                    <ul class="footer-links">
-                        <li><a href="#"><i class="fas fa-chevron-left"></i> الشروط والأحكام</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-left"></i> سياسة الخصوصية</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-left"></i> الأسئلة الشائعة</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-left"></i> سياسة الإرجاع</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-left"></i> توظيف</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-col">
-                    <h4>تابعنا</h4>
-                    <div class="social-links">
-                        <a href="#" class="social-link fb">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="#" class="social-link tw">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a href="#" class="social-link ig">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="#" class="social-link li">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                        <a href="#" class="social-link yt">
-                            <i class="fab fa-youtube"></i>
-                        </a>
-                    </div>
-                    
-                    <div class="newsletter">
-                        <h5>اشترك في نشرتنا</h5>
-                        <p>ابق على اطلاع بآخر العروض والنصائح الصحية</p>
-                        <div class="newsletter-form">
-                            <input type="email" placeholder="بريدك الإلكتروني">
-                            <button type="submit">
-                                <i class="fas fa-paper-plane"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="footer-bottom">
-            <div class="footer-bottom-content">
-                <p class="copyright">
-                    © 2024 Radko-Pharm. جميع الحقوق محفوظة.
-                    <span class="sep">|</span>
-                    صيدلية رادكو فارم - العشرين، مصر
-                </p>
-                
-                <div class="owner-footer-info">
-                    <p>
-                        <i class="fas fa-user-md"></i>
-                        المالك: <strong>رائد محمود خيري أحمد</strong>
-                        <span class="sep">|</span>
-                        الترخيص: <strong>JT5179743</strong>
-                        <span class="sep">|</span>
-                        الهاتف: <strong>+20 127 592 9754</strong>
-                    </p>
-                </div>
-                
-                <div class="payment-methods">
-                    <i class="fab fa-cc-visa" title="Visa"></i>
-                    <i class="fab fa-cc-mastercard" title="MasterCard"></i>
-                    <i class="fab fa-cc-paypal" title="PayPal"></i>
-                    <i class="fas fa-money-bill-wave" title="كاش"></i>
-                    <i class="fas fa-mobile-alt" title="محفظة إلكترونية"></i>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- 🛒 Модальные окна -->
-
-    <!-- Корзина -->
-    <div class="cart-modal" id="cart-modal">
-        <div class="cart-modal-content">
-            <div class="cart-header">
-                <h3><i class="fas fa-shopping-cart"></i> سلة المشتريات</h3>
-                <button class="close-modal">&times;</button>
-            </div>
-            <div class="cart-body" id="cart-body">
-                <!-- Товары в корзине -->
-            </div>
-            <div class="cart-footer">
-                <div class="cart-summary">
-                    <div class="summary-row">
-                        <span>المجموع</span>
-                        <span class="cart-total">0 ج.م</span>
-                    </div>
-                    <div class="summary-row">
-                        <span>التوصيل</span>
-                        <span class="delivery-fee">مجاني</span>
-                    </div>
-                    <div class="summary-row total">
-                        <span>الإجمالي</span>
-                        <span class="final-total">0 ج.م</span>
-                    </div>
-                </div>
-                <button class="checkout-btn">إتمام الطلب</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Модалка продукта -->
-    <div class="product-modal" id="product-modal">
-        <div class="product-modal-content">
-            <!-- Контент будет загружен через JS -->
-        </div>
-    </div>
-
-    <!-- Видео-модалка -->
-    <div class="video-modal" id="video-modal">
-        <div class="video-modal-content">
-            <button class="close-video">&times;</button>
-            <div class="video-container">
-                <iframe id="demo-video" src="" frameborder="0" allowfullscreen></iframe>
-            </div>
-        </div>
-    </div>
-
-    <!-- 🎉 Уведомления -->
-    <div class="notification-center" id="notification-center">
-        <!-- Уведомления будут добавляться сюда -->
-    </div>
-
-    <!-- ⬆️ Кнопка "Наверх" -->
-    <button class="scroll-to-top" id="scroll-to-top">
-        <i class="fas fa-chevron-up"></i>
-    </button>
-
-    <!-- 📦 Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-    <script src="script.js"></script>
-    
-    <!-- 📱 PWA Service Worker -->
-    <script>
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('sw.js');
-        }
-    </script>
-</body>
-</html>
