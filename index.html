@@ -1,0 +1,1813 @@
+<!DOCTYPE html>
+<html lang="ru" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Radko-Pharm | 💊 Умная аптека премиум-класса</title>
+    
+    <!-- Мета-теги для SEO -->
+    <meta name="description" content="Radko-Pharm - первая AI-аптека премиум-класса в Египте с виртуальным консультантом, экспресс-доставкой 24/7 и цифровой аптечкой">
+    <meta name="keywords" content="аптека Египет, лекарства онлайн, AI доктор, доставка лекарств, виртуальная аптека">
+    <meta name="author" content="Raed Mahmoud Kheiry Ahmed">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Radko-Pharm | Умная аптека будущего">
+    <meta property="og:description" content="Первая AI-аптека премиум-класса в Египте">
+    <meta property="og:image" content="https://radko-pharm.com/preview.jpg">
+    <meta property="og:url" content="https://radko-pharm.com">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Radko-Pharm | Умная аптека">
+    <meta name="twitter:description" content="Аптека будущего уже здесь">
+    
+    <!-- PWA -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#00C897">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="icons/icon-192.png">
+    
+    <!-- Иконки -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22 fill=%22%2300C897%22>💊</text></svg>">
+    
+    <!-- Шрифты -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800;900&family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Иконочный шрифт -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Анимации -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    
+    <!-- Стили -->
+    <style>
+        /* Прелоадер с анимацией */
+        :root {
+            --primary: #00C897;
+            --primary-dark: #00A884;
+            --secondary: #667eea;
+            --secondary-dark: #764ba2;
+            --accent: #FF6B6B;
+            --dark: #1A1A2E;
+            --light: #F8F9FA;
+            --gradient: linear-gradient(135deg, #00C897 0%, #667eea 100%);
+            --gradient-dark: linear-gradient(135deg, #00A884 0%, #5a67d8 100%);
+            --shadow: 0 20px 60px rgba(0, 200, 151, 0.15);
+            --shadow-dark: 0 25px 70px rgba(0, 0, 0, 0.15);
+            --radius: 20px;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            color: white;
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .loader {
+            width: 80px;
+            height: 80px;
+            position: relative;
+            margin-bottom: 30px;
+        }
+        
+        .pill {
+            position: absolute;
+            width: 30px;
+            height: 60px;
+            background: white;
+            border-radius: 15px;
+            animation: pillRotate 2s ease-in-out infinite;
+        }
+        
+        .pill:nth-child(2) {
+            animation-delay: 0.2s;
+            opacity: 0.7;
+        }
+        
+        .pill:nth-child(3) {
+            animation-delay: 0.4s;
+            opacity: 0.4;
+        }
+        
+        @keyframes pillRotate {
+            0%, 100% { transform: translateX(0) rotate(0deg); }
+            50% { transform: translateX(40px) rotate(180deg); }
+        }
+        
+        .preloader h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #fff, rgba(255,255,255,0.8));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .preloader p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 500px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        .progress-bar {
+            width: 300px;
+            height: 4px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 2px;
+            margin-top: 30px;
+            overflow: hidden;
+        }
+        
+        .progress {
+            height: 100%;
+            background: white;
+            width: 0%;
+            animation: loadProgress 2s ease-in-out forwards;
+        }
+        
+        @keyframes loadProgress {
+            to { width: 100%; }
+        }
+        
+        /* Основной контент */
+        .page-container {
+            display: none;
+            opacity: 0;
+            animation: fadeIn 1s ease 0.5s forwards;
+        }
+        
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+        
+        /* Языковой переключатель */
+        .lang-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            gap: 10px;
+            background: white;
+            padding: 10px;
+            border-radius: 50px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+        }
+        
+        .lang-btn {
+            padding: 8px 20px;
+            border: none;
+            background: transparent;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .lang-btn.active {
+            background: var(--gradient);
+            color: white;
+        }
+        
+        /* Снежинки для роскоши */
+        .snowflakes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .snowflake {
+            position: absolute;
+            background: var(--primary);
+            opacity: 0.3;
+            border-radius: 50%;
+            animation: fall linear infinite;
+        }
+        
+        @keyframes fall {
+            to { transform: translateY(100vh) rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Прелоадер -->
+    <div class="preloader" id="preloader">
+        <div class="loader">
+            <div class="pill"></div>
+            <div class="pill"></div>
+            <div class="pill"></div>
+        </div>
+        <h1>Radko-Pharm</h1>
+        <p>Загружаем аптеку будущего... Инициализация AI-консультанта</p>
+        <div class="progress-bar">
+            <div class="progress"></div>
+        </div>
+    </div>
+    
+    <!-- Снежинки для эффекта -->
+    <div class="snowflakes" id="snowflakes"></div>
+    
+    <!-- Языковой переключатель -->
+    <div class="lang-switcher">
+        <button class="lang-btn active" data-lang="ru">🇷🇺 RU</button>
+        <button class="lang-btn" data-lang="en">🇬🇧 EN</button>
+        <button class="lang-btn" data-lang="ar">🇪🇬 AR</button>
+    </div>
+    
+    <!-- Основной контейнер -->
+    <div class="page-container" id="main-content">
+        <!-- Быстрый доступ (FAB) -->
+        <div class="quick-access">
+            <button class="fab main-fab">
+                <i class="fas fa-plus"></i>
+            </button>
+            <div class="fab-menu">
+                <a href="https://wa.me/201275929754" class="fab-item whatsapp" target="_blank">
+                    <i class="fab fa-whatsapp"></i>
+                    <span class="fab-label">WhatsApp</span>
+                </a>
+                <a href="tel:+201275929754" class="fab-item phone">
+                    <i class="fas fa-phone"></i>
+                    <span class="fab-label">Позвонить</span>
+                </a>
+                <button class="fab-item cart" id="cart-fab">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="fab-label">Корзина</span>
+                    <span class="cart-badge">0</span>
+                </button>
+                <button class="fab-item ai-assistant">
+                    <i class="fas fa-robot"></i>
+                    <span class="fab-label">AI Помощник</span>
+                </button>
+                <button class="fab-item emergency">
+                    <i class="fas fa-ambulance"></i>
+                    <span class="fab-label">Срочно</span>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Шапка с параллаксом -->
+        <header class="header" id="header">
+            <div class="header-bg"></div>
+            <div class="header-content">
+                <div class="logo-container">
+                    <div class="logo">
+                        <div class="logo-icon animate__animated animate__pulse">
+                            <i class="fas fa-pills"></i>
+                        </div>
+                        <div class="logo-text">
+                            <h1 class="logo-title">Radko-Pharm</h1>
+                            <p class="logo-subtitle" data-i18n="pharmacy_subtitle">Умная аптека премиум-класса</p>
+                        </div>
+                    </div>
+                    
+                    <div class="header-info">
+                        <div class="info-item">
+                            <i class="fas fa-clock"></i>
+                            <span data-i18n="working_hours">24/7 Без выходных</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-truck-fast"></i>
+                            <span data-i18n="delivery_time">Доставка 30 мин</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Навигация -->
+                <nav class="main-nav">
+                    <a href="#home" class="nav-link active" data-i18n="nav_home">
+                        <i class="fas fa-home"></i> Главная
+                    </a>
+                    <a href="#products" class="nav-link" data-i18n="nav_products">
+                        <i class="fas fa-pills"></i> Товары
+                    </a>
+                    <a href="#ai-doctor" class="nav-link" data-i18n="nav_ai">
+                        <i class="fas fa-robot"></i> AI Доктор
+                    </a>
+                    <a href="#services" class="nav-link" data-i18n="nav_services">
+                        <i class="fas fa-concierge-bell"></i> Услуги
+                    </a>
+                    <a href="#pharmacy" class="nav-link" data-i18n="nav_pharmacy">
+                        <i class="fas fa-heart"></i> Моя аптечка
+                    </a>
+                    <a href="#contact" class="nav-link" data-i18n="nav_contact">
+                        <i class="fas fa-address-book"></i> Контакты
+                    </a>
+                </nav>
+                
+                <button class="menu-toggle" id="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <!-- Статусная панель -->
+            <div class="status-bar">
+                <div class="status-item online">
+                    <i class="fas fa-wifi"></i>
+                    <span data-i18n="status_online">Онлайн: 154 чел.</span>
+                </div>
+                <div class="status-item orders">
+                    <i class="fas fa-shipping-fast"></i>
+                    <span data-i18n="status_orders">Доставляем: 23 заказа</span>
+                </div>
+                <div class="status-item ai">
+                    <i class="fas fa-brain"></i>
+                    <span data-i18n="status_ai">AI активен</span>
+                </div>
+            </div>
+        </header>
+        
+        <!-- Главный экран с 3D эффектом -->
+        <section class="hero-section" id="home">
+            <div class="hero-3d">
+                <div class="cube">
+                    <div class="face front"></div>
+                    <div class="face back"></div>
+                    <div class="face left"></div>
+                    <div class="face right"></div>
+                    <div class="face top"></div>
+                    <div class="face bottom"></div>
+                </div>
+            </div>
+            
+            <div class="hero-content">
+                <div class="hero-badges">
+                    <span class="badge premium animate__animated animate__pulse animate__infinite">
+                        <i class="fas fa-crown"></i> PREMIUM
+                    </span>
+                    <span class="badge ai-badge">
+                        <i class="fas fa-robot"></i> AI Powered
+                    </span>
+                    <span class="badge delivery">
+                        <i class="fas fa-bolt"></i> 30 мин
+                    </span>
+                </div>
+                
+                <h1 class="hero-title" data-i18n="hero_title">
+                    <span class="gradient-text">Аптека будущего</span><br>уже здесь
+                </h1>
+                
+                <p class="hero-subtitle" data-i18n="hero_subtitle">
+                    Первая AI-аптека премиум-класса в Египте с виртуальным консультантом, 
+                    цифровой аптечкой и экспресс-доставкой 24/7
+                </p>
+                
+                <!-- Интерактивная статистика -->
+                <div class="hero-stats">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-pills"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number" data-count="2500">0</div>
+                            <div class="stat-label" data-i18n="stat_products">Препаратов</div>
+                        </div>
+                        <div class="stat-graph">
+                            <div class="graph-bar" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number" data-count="15000">0</div>
+                            <div class="stat-label" data-i18n="stat_customers">Довольных клиентов</div>
+                        </div>
+                        <div class="stat-graph">
+                            <div class="graph-bar" style="width: 92%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-truck"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number" data-count="98.7">0</div>
+                            <div class="stat-label" data-i18n="stat_delivery">Доставка вовремя</div>
+                        </div>
+                        <div class="stat-graph">
+                            <div class="graph-bar" style="width: 98%"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- CTA кнопки -->
+                <div class="hero-actions">
+                    <button class="btn btn-primary btn-lg btn-glow" id="consult-free">
+                        <i class="fas fa-comment-medical"></i>
+                        <span data-i18n="btn_consult_free">Бесплатная консультация</span>
+                    </button>
+                    <button class="btn btn-outline btn-lg" id="explore-products">
+                        <i class="fas fa-store"></i>
+                        <span data-i18n="btn_explore">Исследовать каталог</span>
+                    </button>
+                    <button class="btn btn-video btn-lg" id="watch-video">
+                        <i class="fas fa-play-circle"></i>
+                        <span data-i18n="btn_watch">Смотреть видео</span>
+                    </button>
+                </div>
+                
+                <!-- Видео попап -->
+                <div class="video-popup" id="video-popup">
+                    <div class="video-content">
+                        <button class="close-video">&times;</button>
+                        <video controls poster="https://radko-pharm.com/video-preview.jpg">
+                            <source src="https://radko-pharm.com/promo.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Владелец - премиум карточка -->
+        <section class="owner-section">
+            <div class="section-header">
+                <h2 class="section-title" data-i18n="owner_title">
+                    <i class="fas fa-crown"></i> Основатель и владелец
+                </h2>
+                <p class="section-subtitle" data-i18n="owner_subtitle">Лицензированный фармацевт с 15-летним опытом</p>
+            </div>
+            
+            <div class="owner-card-glass">
+                <div class="owner-avatar">
+                    <div class="avatar-image">
+                        <i class="fas fa-user-md"></i>
+                    </div>
+                    <div class="avatar-badge">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                </div>
+                
+                <div class="owner-info">
+                    <h3 class="owner-name">Раед Махмуд Хейри Ахмед</h3>
+                    <p class="owner-title" data-i18n="owner_position">Владелец и главный фармацевт</p>
+                    
+                    <div class="owner-details">
+                        <div class="detail-item">
+                            <i class="fas fa-graduation-cap"></i>
+                            <div>
+                                <strong data-i18n="education">Образование</strong>
+                                <span data-i18n="education_text">Доктор фармацевтических наук</span>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-award"></i>
+                            <div>
+                                <strong data-i18n="experience">Опыт</strong>
+                                <span data-i18n="experience_text">15+ лет в фармации</span>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-id-card"></i>
+                            <div>
+                                <strong data-i18n="license">Лицензия</strong>
+                                <span>JT5179743</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="owner-contact">
+                        <a href="tel:+201275929754" class="contact-btn phone">
+                            <i class="fas fa-phone"></i> +20 127 592 9754
+                        </a>
+                        <a href="mailto:raed@radkopharm.com" class="contact-btn email">
+                            <i class="fas fa-envelope"></i> raed@radkopharm.com
+                        </a>
+                    </div>
+                    
+                    <blockquote class="owner-quote">
+                        <i class="fas fa-quote-left"></i>
+                        <p data-i18n="owner_quote">Ваше здоровье — наша миссия. Мы сочетаем современные технологии с человеческой заботой.</p>
+                        <i class="fas fa-quote-right"></i>
+                    </blockquote>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Премиум каталог товаров -->
+        <section class="products-section" id="products">
+            <div class="section-header">
+                <h2 class="section-title" data-i18n="products_title">
+                    <i class="fas fa-star"></i> Премиум каталог
+                </h2>
+                <p class="section-subtitle" data-i18n="products_subtitle">Только оригинальные препараты с сертификатами</p>
+            </div>
+            
+            <!-- Фильтры и поиск -->
+            <div class="products-controls">
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="product-search" placeholder="Поиск препаратов..." data-i18n="search_placeholder">
+                    <button class="search-ai">
+                        <i class="fas fa-robot"></i>
+                        <span data-i18n="search_ai">AI Поиск</span>
+                    </button>
+                </div>
+                
+                <div class="filters">
+                    <div class="filter-tabs">
+                        <button class="filter-tab active" data-filter="all">
+                            <i class="fas fa-th-large"></i> Все
+                        </button>
+                        <button class="filter-tab" data-filter="antibiotics">
+                            <i class="fas fa-virus"></i> Антибиотики
+                        </button>
+                        <button class="filter-tab" data-filter="painkillers">
+                            <i class="fas fa-head-side-virus"></i> Обезболивающие
+                        </button>
+                        <button class="filter-tab" data-filter="vitamins">
+                            <i class="fas fa-apple-alt"></i> Витамины
+                        </button>
+                        <button class="filter-tab" data-filter="chronic">
+                            <i class="fas fa-heartbeat"></i> Хронические
+                        </button>
+                        <button class="filter-tab" data-filter="cosmetics">
+                            <i class="fas fa-spa"></i> Косметика
+                        </button>
+                    </div>
+                    
+                    <div class="sort-by">
+                        <select id="sort-select">
+                            <option value="popular" data-i18n="sort_popular">Популярные</option>
+                            <option value="price-asc" data-i18n="sort_price_asc">Цена ↑</option>
+                            <option value="price-desc" data-i18n="sort_price_desc">Цена ↓</option>
+                            <option value="new" data-i18n="sort_new">Новинки</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Продуктовая сетка -->
+            <div class="products-grid" id="products-grid">
+                <!-- Динамически генерируется -->
+            </div>
+            
+            <!-- Пагинация -->
+            <div class="pagination">
+                <button class="page-btn prev">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <span class="page-info">Страница <span id="current-page">1</span> из <span id="total-pages">5</span></span>
+                <button class="page-btn next">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+            
+            <!-- Быстрый заказ -->
+            <div class="quick-order">
+                <h3 data-i18n="quick_order_title">Не нашли нужное лекарство?</h3>
+                <p data-i18n="quick_order_text">Закажите через нашего AI-консультанта</p>
+                <button class="btn btn-gradient" id="quick-order-btn">
+                    <i class="fas fa-bolt"></i>
+                    <span data-i18n="btn_quick_order">Быстрый заказ</span>
+                </button>
+            </div>
+        </section>
+        
+        <!-- AI Консультант с голосом -->
+        <section class="ai-section" id="ai-doctor">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <i class="fas fa-robot"></i> 
+                    <span data-i18n="ai_title">Dr. DeepSeek AI</span>
+                </h2>
+                <p class="section-subtitle" data-i18n="ai_subtitle">Ваш персональный медицинский помощник 24/7</p>
+            </div>
+            
+            <div class="ai-container">
+                <div class="ai-sidebar">
+                    <div class="ai-profile">
+                        <div class="ai-avatar animate__animated animate__pulse">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h3 data-i18n="ai_name">Dr. DeepSeek</h3>
+                        <p class="ai-status online" data-i18n="ai_status">Онлайн • Готов помочь</p>
+                        
+                        <div class="ai-stats">
+                            <div class="stat">
+                                <i class="fas fa-comments"></i>
+                                <div>
+                                    <strong>15K+</strong>
+                                    <span data-i18n="ai_conversations">Консультаций</span>
+                                </div>
+                            </div>
+                            <div class="stat">
+                                <i class="fas fa-clock"></i>
+                                <div>
+                                    <strong>99.2%</strong>
+                                    <span data-i18n="ai_accuracy">Точность</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="ai-features">
+                        <h4 data-i18n="ai_features">Возможности</h4>
+                        <button class="feature-btn" data-feature="diagnosis">
+                            <i class="fas fa-stethoscope"></i>
+                            <span data-i18n="ai_diagnosis">Предварительная диагностика</span>
+                        </button>
+                        <button class="feature-btn" data-feature="interaction">
+                            <i class="fas fa-exchange-alt"></i>
+                            <span data-i18n="ai_interaction">Проверка совместимости</span>
+                        </button>
+                        <button class="feature-btn" data-feature="dosage">
+                            <i class="fas fa-calculator"></i>
+                            <span data-i18n="ai_dosage">Расчет дозировки</span>
+                        </button>
+                        <button class="feature-btn" data-feature="reminder">
+                            <i class="fas fa-bell"></i>
+                            <span data-i18n="ai_reminder">Напоминания о приеме</span>
+                        </button>
+                        <button class="feature-btn voice-toggle" id="voice-toggle">
+                            <i class="fas fa-microphone"></i>
+                            <span data-i18n="ai_voice">Голосовой режим</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="ai-chat">
+                    <div class="chat-header">
+                        <div class="chat-title">
+                            <h3 data-i18n="chat_title">Чат с AI-доктором</h3>
+                            <div class="typing-indicator" id="typing-indicator">
+                                <span></span><span></span><span></span>
+                            </div>
+                        </div>
+                        <div class="chat-actions">
+                            <button class="action-btn" id="clear-chat">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                            <button class="action-btn" id="save-chat">
+                                <i class="fas fa-save"></i>
+                            </button>
+                            <button class="action-btn" id="share-chat">
+                                <i class="fas fa-share-alt"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="chat-messages" id="chat-messages">
+                        <div class="message ai">
+                            <div class="avatar">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <div class="content">
+                                <div class="name">Dr. DeepSeek</div>
+                                <div class="text" data-i18n="ai_welcome">
+                                    Здравствуйте! Я ваш AI-помощник в аптеке Radko-Pharm. 
+                                    Могу помочь с вопросами о лекарствах, дозировках, 
+                                    побочных эффектах и совместимости препаратов.
+                                </div>
+                                <div class="time">Сейчас</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="chat-input-container">
+                        <div class="input-actions">
+                            <button class="input-action" id="attach-prescription">
+                                <i class="fas fa-file-prescription"></i>
+                            </button>
+                            <button class="input-action" id="send-image">
+                                <i class="fas fa-camera"></i>
+                            </button>
+                            <button class="input-action" id="voice-input">
+                                <i class="fas fa-microphone"></i>
+                            </button>
+                        </div>
+                        
+                        <div class="chat-input">
+                            <input type="text" 
+                                   id="message-input" 
+                                   placeholder="Опишите симптомы или задайте вопрос..." 
+                                   data-i18n="chat_placeholder">
+                            <button class="send-btn" id="send-btn">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                        
+                        <div class="quick-replies">
+                            <button class="quick-reply" data-message="дозировка">
+                                <i class="fas fa-calculator"></i>
+                                <span data-i18n="quick_dosage">Дозировка</span>
+                            </button>
+                            <button class="quick-reply" data-message="побочные эффекты">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                <span data-i18n="quick_side">Побочные эффекты</span>
+                            </button>
+                            <button class="quick-reply" data-message="совместимость">
+                                <i class="fas fa-exchange-alt"></i>
+                                <span data-i18n="quick_interaction">Совместимость</span>
+                            </button>
+                            <button class="quick-reply" data-message="альтернатива">
+                                <i class="fas fa-pills"></i>
+                                <span data-i18n="quick_alternative">Аналоги</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Виртуальная аптечка -->
+        <section class="pharmacy-section" id="pharmacy">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <i class="fas fa-heart"></i>
+                    <span data-i18n="pharmacy_title">Моя цифровая аптечка</span>
+                </h2>
+                <p class="section-subtitle" data-i18n="pharmacy_subtitle">Управляйте вашими лекарствами в одном месте</p>
+            </div>
+            
+            <div class="pharmacy-container">
+                <div class="pharmacy-sidebar">
+                    <div class="user-profile">
+                        <div class="user-avatar">
+                            <i class="fas fa-user-injured"></i>
+                        </div>
+                        <h3 id="user-name">Гость</h3>
+                        <button class="btn btn-sm" id="edit-profile" data-i18n="btn_edit_profile">Редактировать</button>
+                    </div>
+                    
+                    <div class="pharmacy-stats">
+                        <div class="stat">
+                            <i class="fas fa-pills"></i>
+                            <div>
+                                <strong id="total-meds">0</strong>
+                                <span data-i18n="pharmacy_meds">Лекарств</span>
+                            </div>
+                        </div>
+                        <div class="stat">
+                            <i class="fas fa-bell"></i>
+                            <div>
+                                <strong id="active-reminders">0</strong>
+                                <span data-i18n="pharmacy_reminders">Напоминаний</span>
+                            </div>
+                        </div>
+                        <div class="stat">
+                            <i class="fas fa-history"></i>
+                            <div>
+                                <strong id="refill-soon">0</strong>
+                                <span data-i18n="pharmacy_refill">Пополнить</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="pharmacy-actions">
+                        <button class="action-btn" id="add-medication">
+                            <i class="fas fa-plus-circle"></i>
+                            <span data-i18n="pharmacy_add">Добавить лекарство</span>
+                        </button>
+                        <button class="action-btn" id="import-prescription">
+                            <i class="fas fa-file-import"></i>
+                            <span data-i18n="pharmacy_import">Импорт рецепта</span>
+                        </button>
+                        <button class="action-btn" id="export-pharmacy">
+                            <i class="fas fa-file-export"></i>
+                            <span data-i18n="pharmacy_export">Экспорт данных</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="pharmacy-main">
+                    <div class="pharmacy-tabs">
+                        <button class="pharmacy-tab active" data-tab="current">
+                            <i class="fas fa-history"></i>
+                            <span data-i18n="tab_current">Текущие</span>
+                        </button>
+                        <button class="pharmacy-tab" data-tab="history">
+                            <i class="fas fa-chart-line"></i>
+                            <span data-i18n="tab_history">История</span>
+                        </button>
+                        <button class="pharmacy-tab" data-tab="reminders">
+                            <i class="fas fa-bell"></i>
+                            <span data-i18n="tab_reminders">Напоминания</span>
+                            <span class="badge">3</span>
+                        </button>
+                        <button class="pharmacy-tab" data-tab="reports">
+                            <i class="fas fa-chart-pie"></i>
+                            <span data-i18n="tab_reports">Отчеты</span>
+                        </button>
+                    </div>
+                    
+                    <!-- Текущие лекарства -->
+                    <div class="tab-content active" id="current-meds">
+                        <div class="medications-grid">
+                            <!-- Динамически генерируется -->
+                        </div>
+                        
+                        <div class="empty-state" id="empty-meds">
+                            <i class="fas fa-pills"></i>
+                            <h4 data-i18n="empty_meds_title">Аптечка пуста</h4>
+                            <p data-i18n="empty_meds_text">Добавьте ваши лекарства для отслеживания</p>
+                            <button class="btn btn-primary" id="add-first-med">
+                                <i class="fas fa-plus"></i>
+                                <span data-i18n="btn_add_first">Добавить первое лекарство</span>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- История приема -->
+                    <div class="tab-content" id="history-tab">
+                        <div class="calendar-view">
+                            <div class="calendar-header">
+                                <button class="prev-month"><i class="fas fa-chevron-left"></i></button>
+                                <h4 id="current-month">Февраль 2024</h4>
+                                <button class="next-month"><i class="fas fa-chevron-right"></i></button>
+                            </div>
+                            <div class="calendar-grid" id="calendar">
+                                <!-- Динамический календарь -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Напоминания -->
+                    <div class="tab-content" id="reminders-tab">
+                        <div class="reminders-list">
+                            <!-- Динамически генерируется -->
+                        </div>
+                    </div>
+                    
+                    <!-- Графики -->
+                    <div class="tab-content" id="reports-tab">
+                        <div class="charts-container">
+                            <div class="chart-card">
+                                <h5 data-i18n="chart_adherence">Приверженность лечению</h5>
+                                <div class="chart" id="adherence-chart"></div>
+                            </div>
+                            <div class="chart-card">
+                                <h5 data-i18n="chart_time">Время приема</h5>
+                                <div class="chart" id="time-chart"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Модальное окно добавления лекарства -->
+            <div class="modal" id="medication-modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 data-i18n="modal_add_med">Добавить лекарство</h3>
+                        <button class="close-modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="medication-form">
+                            <div class="form-group">
+                                <label data-i18n="med_name">Название лекарства</label>
+                                <input type="text" required class="med-search" placeholder="Начните вводить название...">
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label data-i18n="med_dosage">Дозировка</label>
+                                    <input type="text" placeholder="500 мг" required>
+                                </div>
+                                <div class="form-group">
+                                    <label data-i18n="med_frequency">Частота</label>
+                                    <select required>
+                                        <option value="1" data-i18n="freq_1">1 раз в день</option>
+                                        <option value="2" data-i18n="freq_2">2 раза в день</option>
+                                        <option value="3" data-i18n="freq_3">3 раза в день</option>
+                                        <option value="4" data-i18n="freq_4">4 раза в день</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label data-i18n="med_start">Начало приема</label>
+                                    <input type="date" required>
+                                </div>
+                                <div class="form-group">
+                                    <label data-i18n="med_end">Конец приема</label>
+                                    <input type="date">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label data-i18n="med_notes">Примечания</label>
+                                <textarea placeholder="Особые указания..."></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>
+                                    <input type="checkbox" id="set-reminders">
+                                    <span data-i18n="med_reminders">Установить напоминания</span>
+                                </label>
+                            </div>
+                            <div class="modal-actions">
+                                <button type="button" class="btn btn-secondary close-modal" data-i18n="btn_cancel">Отмена</button>
+                                <button type="submit" class="btn btn-primary" data-i18n="btn_save">Сохранить</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Премиум услуги -->
+        <section class="services-section" id="services">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <i class="fas fa-concierge-bell"></i>
+                    <span data-i18n="services_title">Эксклюзивные услуги</span>
+                </h2>
+                <p class="section-subtitle" data-i18n="services_subtitle">Мы предлагаем больше, чем просто аптека</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card premium">
+                    <div class="service-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3 data-i18n="service_express">Экспресс-доставка</h3>
+                    <p data-i18n="service_express_desc">Доставка за 30 минут в любое время суток</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> <span data-i18n="feature_30min">30 минут гарантия</span></li>
+                        <li><i class="fas fa-check"></i> <span data-i18n="feature_track">Отслеживание в реальном времени</span></li>
+                        <li><i class="fas fa-check"></i> <span data-i18n="feature_247">24/7 доступность</span></li>
+                    </ul>
+                    <button class="btn btn-service" data-service="express">
+                        <i class="fas fa-bolt"></i>
+                        <span data-i18n="btn_order_express">Заказать сейчас</span>
+                    </button>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-user-md"></i>
+                    </div>
+                    <h3 data-i18n="service_consult">Виртуальная консультация</h3>
+                    <p data-i18n="service_consult_desc">Консультация с фармацевтом по видеосвязи</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> <span data-i18n="feature_video">Видеоконсультация</span></li>
+                        <li><i class="fas fa-check"></i> <span data-i18n="feature_prescription">Электронный рецепт</span></li>
+                        <li><i class="fas fa-check"></i> <span data-i18n="feature_followup">Последующее наблюдение</span></li>
+                    </ul>
+                    <button class="btn btn-service" data-service="consultation">
+                        <i class="fas fa-video"></i>
+                        <span data-i18n="btn_book_consult">Записаться</span>
+                    </button>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-pills"></i>
+                    </div>
+                    <h3 data-i18n="service_personal">Персональная аптечка</h3>
+                    <p data-i18n="service_personal_desc">Индивидуальный набор лекарств на месяц</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> <span data-i18n="feature_packaging">Индивидуальная фасовка</span></li>
+                        <li><i class="fas fa-check"></i> <span data-i18n="feature_delivery">Ежемесячная доставка</span></li>
+                        <li><i class="fas fa-check"></i> <span data-i18n="feature_adjust">Корректировка по необходимости</span></li>
+                    </ul>
+                    <button class="btn btn-service" data-service="personal">
+                        <i class="fas fa-user-cog"></i>
+                        <span data-i18n="btn_create_kit">Создать набор</span>
+                    </button>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <h3 data-i18n="service_lab">Лабораторные анализы</h3>
+                    <p data-i18n="service_lab_desc">Забор анализов на дому с быстрыми результатами</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> <span data-i18n="feature_home">Забор на дому</span></li>
+                        <li><i class="fas fa-check"></i> <span data-i18n="feature_digital">Цифровые результаты</span></li>
+                        <li><i class="fas fa-check"></i> <span data-i18n="feature_consult">Консультация по результатам</span></li>
+                    </ul>
+                    <button class="btn btn-service" data-service="lab">
+                        <i class="fas fa-syringe"></i>
+                        <span data-i18n="btn_order_test">Заказать анализы</span>
+                    </button>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <h3 data-i18n="service_monitoring">Мониторинг здоровья</h3>
+                    <p data-i18n="service_monitoring_desc">Ежедневный мониторинг жизненных показателей</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> <span data-i18n="feature_vitals">Контроль показателей</span></li>
+                        <li><i class="fas fa-check"></i> <span data-i18n="feature_alerts">Автооповещение врача</span></li>
+                        <li><i class="fas fa-check"></i> <span data-i18n="feature_report">Еженедельный отчет</span></li>
+                    </ul>
+                    <button class="btn btn-service" data-service="monitoring">
+                        <i class="fas fa-chart-line"></i>
+                        <span data-i18n="btn_start_monitor">Начать мониторинг</span>
+                    </button>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-capsules"></i>
+                    </div>
+                    <h3 data-i18n="service_subscription">Лекарства по подписке</h3>
+                    <p data-i18n="service_subscription_desc">Автоматическая доставка регулярных лекарств</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> <span data-i18n="feature_auto">Автодозаказ</span></li>
+                        <li><i class="fas fa-check"></i> <span data-i18n="feature_discount">Скидка 15%</span></li>
+                        <li><i class="fas fa-check"></i> <span data-i18n="feature_pause">Возможность паузы</span></li>
+                    </ul>
+                    <button class="btn btn-service" data-service="subscription">
+                        <i class="fas fa-redo"></i>
+                        <span data-i18n="btn_subscribe">Оформить подписку</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Отзывы с рейтингами -->
+        <section class="reviews-section" id="reviews">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <i class="fas fa-star"></i>
+                    <span data-i18n="reviews_title">Отзывы клиентов</span>
+                </h2>
+                <p class="section-subtitle" data-i18n="reviews_subtitle">Что говорят наши клиенты</p>
+            </div>
+            
+            <div class="reviews-container">
+                <div class="reviews-stats">
+                    <div class="overall-rating">
+                        <div class="rating-number">4.9</div>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <p data-i18n="rating_based">На основе 1,247 отзывов</p>
+                    </div>
+                    
+                    <div class="rating-bars">
+                        <div class="rating-bar">
+                            <span>5 звезд</span>
+                            <div class="bar">
+                                <div class="fill" style="width: 85%"></div>
+                            </div>
+                            <span>85%</span>
+                        </div>
+                        <div class="rating-bar">
+                            <span>4 звезды</span>
+                            <div class="bar">
+                                <div class="fill" style="width: 12%"></div>
+                            </div>
+                            <span>12%</span>
+                        </div>
+                        <div class="rating-bar">
+                            <span>3 звезды</span>
+                            <div class="bar">
+                                <div class="fill" style="width: 2%"></div>
+                            </div>
+                            <span>2%</span>
+                        </div>
+                        <div class="rating-bar">
+                            <span>2 звезды</span>
+                            <div class="bar">
+                                <div class="fill" style="width: 1%"></div>
+                            </div>
+                            <span>1%</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="reviews-slider">
+                    <div class="review-card featured">
+                        <div class="review-header">
+                            <img src="https://i.pravatar.cc/100?img=1" alt="Ахмед" class="review-avatar">
+                            <div>
+                                <h4>Ахмед Мохамед</h4>
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                            <span class="review-date">2 дня назад</span>
+                        </div>
+                        <p class="review-text" data-i18n="review_1">
+                            Лучшая аптека в Египте! AI-консультант помог подобрать альтернативу 
+                            дорогому лекарству. Доставка заняла всего 25 минут в 3 часа ночи!
+                        </p>
+                        <div class="review-images">
+                            <img src="https://via.placeholder.com/80" alt="Товар">
+                            <img src="https://via.placeholder.com/80" alt="Товар">
+                        </div>
+                        <div class="review-helpful">
+                            <button class="helpful-btn">
+                                <i class="fas fa-thumbs-up"></i> Полезно (42)
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="review-card">
+                        <div class="review-header">
+                            <img src="https://i.pravatar.cc/100?img=5" alt="Сара" class="review-avatar">
+                            <div>
+                                <h4>Сара Халид</h4>
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                            <span class="review-date">Неделю назад</span>
+                        </div>
+                        <p class="review-text" data-i18n="review_2">
+                            Цифровая аптечка спасла меня! Напоминания не дают забыть о приеме 
+                            лекарств. Очень удобно отслеживать историю приема.
+                        </p>
+                    </div>
+                    
+                    <div class="review-card">
+                        <div class="review-header">
+                            <img src="https://i.pravatar.cc/100?img=8" alt="Мохамед" class="review-avatar">
+                            <div>
+                                <h4>Мохамед Али</h4>
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                            </div>
+                            <span class="review-date">Месяц назад</span>
+                        </div>
+                        <p class="review-text" data-i18n="review_3">
+                            Заказывал лекарства для бабушки. Консультант подробно объяснил 
+                            как принимать, даже позвонил для уточнений. Очень внимательный сервис!
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="review-actions">
+                    <button class="btn btn-outline" id="write-review">
+                        <i class="fas fa-edit"></i>
+                        <span data-i18n="btn_write_review">Написать отзыв</span>
+                    </button>
+                    <button class="btn btn-link" id="view-all-reviews">
+                        <span data-i18n="btn_view_all">Смотреть все отзывы</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Контакты и карта -->
+        <section class="contact-section" id="contact">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span data-i18n="contact_title">Наши контакты</span>
+                </h2>
+                <p class="section-subtitle" data-i18n="contact_subtitle">Мы всегда на связи</p>
+            </div>
+            
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <i class="fas fa-map-marked-alt"></i>
+                        </div>
+                        <div class="info-content">
+                            <h4 data-i18n="contact_address">Адрес</h4>
+                            <p>Эль-Ашрин, Египет</p>
+                            <p class="info-note" data-i18n="contact_note">Бесплатная парковка для клиентов</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="info-content">
+                            <h4 data-i18n="contact_phone">Телефон</h4>
+                            <p><a href="tel:+201275929754">+20 127 592 9754</a></p>
+                            <p class="info-note" data-i18n="contact_24">Круглосуточная поддержка</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="info-content">
+                            <h4 data-i18n="contact_email">Email</h4>
+                            <p><a href="mailto:info@radkopharm.com">info@radkopharm.com</a></p>
+                            <p><a href="mailto:raed@radkopharm.com">raed@radkopharm.com</a></p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="info-content">
+                            <h4 data-i18n="contact_hours">Часы работы</h4>
+                            <p data-i18n="hours_247">24 часа в сутки, 7 дней в неделю</p>
+                            <p data-i18n="hours_holidays">Без выходных и праздников</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-map">
+                    <div class="map-container">
+                        <!-- Интерактивная карта -->
+                        <div class="map-placeholder">
+                            <i class="fas fa-map"></i>
+                            <p data-i18n="map_loading">Загрузка карты...</p>
+                        </div>
+                        <div class="map-overlay">
+                            <div class="map-info">
+                                <h4 data-i18n="map_directions">Как добраться</h4>
+                                <button class="btn btn-sm" id="get-directions">
+                                    <i class="fas fa-route"></i>
+                                    <span data-i18n="btn_directions">Проложить маршрут</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Форма обратной связи -->
+            <div class="contact-form-container">
+                <h3 data-i18n="form_title">Остались вопросы?</h3>
+                <p class="form-subtitle" data-i18n="form_subtitle">Напишите нам, и мы ответим в течение 15 минут</p>
+                
+                <form id="contact-form">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label data-i18n="form_name">Имя</label>
+                            <input type="text" required>
+                        </div>
+                        <div class="form-group">
+                            <label data-i18n="form_phone">Телефон</label>
+                            <input type="tel" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email">
+                        </div>
+                        <div class="form-group">
+                            <label data-i18n="form_subject">Тема</label>
+                            <select required>
+                                <option value="" data-i18n="form_select">Выберите тему</option>
+                                <option value="consult" data-i18n="form_consult">Консультация</option>
+                                <option value="order" data-i18n="form_order">Заказ</option>
+                                <option value="delivery" data-i18n="form_delivery">Доставка</option>
+                                <option value="complaint" data-i18n="form_complaint">Жалоба</option>
+                                <option value="suggestion" data-i18n="form_suggestion">Предложение</option>
+                            </select>
+                        </div>
+                        <div class="form-group full-width">
+                            <label data-i18n="form_message">Сообщение</label>
+                            <textarea rows="4" required placeholder="Опишите ваш вопрос..."></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary btn-lg">
+                            <i class="fas fa-paper-plane"></i>
+                            <span data-i18n="btn_send_message">Отправить сообщение</span>
+                        </button>
+                        <p class="form-note" data-i18n="form_note">
+                            Нажимая кнопку, вы соглашаетесь с обработкой персональных данных
+                        </p>
+                    </div>
+                </form>
+            </div>
+        </section>
+        
+        <!-- Подвал -->
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-main">
+                    <div class="footer-brand">
+                        <div class="footer-logo">
+                            <i class="fas fa-pills"></i>
+                            <div>
+                                <h3>Radko-Pharm</h3>
+                                <p class="tagline" data-i18n="footer_tagline">Аптека будущего сегодня</p>
+                            </div>
+                        </div>
+                        <p class="footer-description" data-i18n="footer_description">
+                            Первая AI-аптека премиум-класса в Египте, 
+                            сочетающая передовые технологии с человеческой заботой.
+                        </p>
+                        <div class="footer-social">
+                            <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-links">
+                        <div class="link-group">
+                            <h4 data-i18n="footer_services">Услуги</h4>
+                            <a href="#services" data-i18n="footer_express">Экспресс-доставка</a>
+                            <a href="#services" data-i18n="footer_consult">Консультации</a>
+                            <a href="#pharmacy" data-i18n="footer_pharmacy">Цифровая аптечка</a>
+                            <a href="#services" data-i18n="footer_lab">Анализы</a>
+                        </div>
+                        
+                        <div class="link-group">
+                            <h4 data-i18n="footer_info">Информация</h4>
+                            <a href="#" data-i18n="footer_about">О компании</a>
+                            <a href="#" data-i18n="footer_blog">Блог</a>
+                            <a href="#" data-i18n="footer_career">Карьера</a>
+                            <a href="#" data-i18n="footer_partners">Партнеры</a>
+                        </div>
+                        
+                        <div class="link-group">
+                            <h4 data-i18n="footer_legal">Правовая информация</h4>
+                            <a href="#" data-i18n="footer_terms">Условия использования</a>
+                            <a href="#" data-i18n="footer_privacy">Политика конфиденциальности</a>
+                            <a href="#" data-i18n="footer_cookies">Cookies</a>
+                            <a href="#" data-i18n="footer_compliance">Соответствие</a>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-app">
+                        <h4 data-i18n="footer_app">Скачайте приложение</h4>
+                        <p data-i18n="footer_app_desc">Полный функционал в вашем телефоне</p>
+                        <div class="app-badges">
+                            <a href="#" class="app-badge">
+                                <i class="fab fa-apple"></i>
+                                <div>
+                                    <span data-i18n="app_store">Download on the</span>
+                                    <strong>App Store</strong>
+                                </div>
+                            </a>
+                            <a href="#" class="app-badge">
+                                <i class="fab fa-google-play"></i>
+                                <div>
+                                    <span data-i18n="play_store">Get it on</span>
+                                    <strong>Google Play</strong>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="qr-code">
+                            <div class="qr-placeholder">
+                                <i class="fas fa-qrcode"></i>
+                            </div>
+                            <p data-i18n="footer_scan">Отсканируйте для загрузки</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="footer-bottom">
+                    <div class="payment-methods">
+                        <span data-i18n="footer_payments">Принимаем к оплате:</span>
+                        <div class="payment-icons">
+                            <i class="fab fa-cc-visa"></i>
+                            <i class="fab fa-cc-mastercard"></i>
+                            <i class="fab fa-cc-amex"></i>
+                            <i class="fab fa-cc-paypal"></i>
+                            <i class="fas fa-money-bill-wave"></i>
+                            <i class="fas fa-university"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-copyright">
+                        <p>
+                            © 2025 Radko-Pharm. 
+                            <span data-i18n="footer_rights">Все права защищены.</span>
+                            <br>
+                            <span data-i18n="footer_license">Лицензия: JT5179743</span>
+                            •
+                            <span data-i18n="footer_vat">НДС: EG123456789</span>
+                        </p>
+                        <p class="footer-owner" data-i18n="footer_owner">
+                            Владелец: Раед Махмуд Хейри Ахмед
+                        </p>
+                    </div>
+                    
+                    <div class="footer-badges">
+                        <span class="badge secure">
+                            <i class="fas fa-lock"></i>
+                            <span data-i18n="badge_secure">SSL защищено</span>
+                        </span>
+                        <span class="badge certified">
+                            <i class="fas fa-award"></i>
+                            <span data-i18n="badge_certified">Сертифицировано</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        
+        <!-- Корзина -->
+        <div class="cart-sidebar" id="cart-sidebar">
+            <div class="cart-header">
+                <h3>
+                    <i class="fas fa-shopping-cart"></i>
+                    <span data-i18n="cart_title">Корзина</span>
+                    <span class="cart-count">(0)</span>
+                </h3>
+                <button class="close-cart" id="close-cart">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="cart-body">
+                <div class="cart-items" id="cart-items">
+                    <!-- Динамически генерируется -->
+                </div>
+                
+                <div class="empty-cart" id="empty-cart">
+                    <i class="fas fa-shopping-cart"></i>
+                    <h4 data-i18n="cart_empty_title">Корзина пуста</h4>
+                    <p data-i18n="cart_empty_text">Добавьте товары из каталога</p>
+                    <button class="btn btn-primary" id="browse-products">
+                        <i class="fas fa-store"></i>
+                        <span data-i18n="btn_browse">Перейти в каталог</span>
+                    </button>
+                </div>
+                
+                <div class="cart-recommendations">
+                    <h4 data-i18n="cart_recommend">С этим покупают</h4>
+                    <div class="recommendations-slider">
+                        <!-- Динамически генерируется -->
+                    </div>
+                </div>
+            </div>
+            
+            <div class="cart-footer">
+                <div class="cart-summary">
+                    <div class="summary-row">
+                        <span data-i18n="cart_subtotal">Промежуточный итог</span>
+                        <span id="cart-subtotal">0 ег.ф.</span>
+                    </div>
+                    <div class="summary-row">
+                        <span data-i18n="cart_delivery">Доставка</span>
+                        <span id="delivery-cost">0 ег.ф.</span>
+                    </div>
+                    <div class="summary-row discount">
+                        <span data-i18n="cart_discount">Скидка</span>
+                        <span id="cart-discount">-0 ег.ф.</span>
+                    </div>
+                    <div class="summary-row total">
+                        <span data-i18n="cart_total">Итого</span>
+                        <span id="cart-total">0 ег.ф.</span>
+                    </div>
+                    
+                    <div class="promo-code">
+                        <input type="text" id="promo-input" placeholder="Промокод" data-i18n="cart_promo_placeholder">
+                        <button id="apply-promo" data-i18n="btn_apply">Применить</button>
+                    </div>
+                </div>
+                
+                <div class="cart-actions">
+                    <button class="btn btn-secondary" id="continue-shopping">
+                        <i class="fas fa-arrow-left"></i>
+                        <span data-i18n="btn_continue">Продолжить покупки</span>
+                    </button>
+                    <button class="btn btn-primary btn-checkout" id="checkout-btn">
+                        <i class="fas fa-lock"></i>
+                        <span data-i18n="btn_checkout">Оформить заказ</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Чек-аут модальное окно -->
+        <div class="modal checkout-modal" id="checkout-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 data-i18n="checkout_title">Оформление заказа</h3>
+                    <button class="close-modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="checkout-steps">
+                        <div class="step active" data-step="1">
+                            <div class="step-number">1</div>
+                            <div class="step-title" data-i18n="step_info">Информация</div>
+                        </div>
+                        <div class="step" data-step="2">
+                            <div class="step-number">2</div>
+                            <div class="step-title" data-i18n="step_delivery">Доставка</div>
+                        </div>
+                        <div class="step" data-step="3">
+                            <div class="step-number">3</div>
+                            <div class="step-title" data-i18n="step_payment">Оплата</div>
+                        </div>
+                        <div class="step" data-step="4">
+                            <div class="step-number">4</div>
+                            <div class="step-title" data-i18n="step_confirm">Подтверждение</div>
+                        </div>
+                    </div>
+                    
+                    <form id="checkout-form">
+                        <!-- Шаг 1: Информация -->
+                        <div class="checkout-step active" id="step-1">
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label data-i18n="form_name">Имя</label>
+                                    <input type="text" required>
+                                </div>
+                                <div class="form-group">
+                                    <label data-i18n="form_phone">Телефон</label>
+                                    <input type="tel" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Email</label>
+                                    <input type="email">
+                                </div>
+                                <div class="form-group full-width">
+                                    <label data-i18n="form_notes">Примечания к заказу</label>
+                                    <textarea placeholder="Особые указания..."></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Шаг 2: Доставка -->
+                        <div class="checkout-step" id="step-2">
+                            <div class="delivery-options">
+                                <label class="option-card active">
+                                    <input type="radio" name="delivery" value="express" checked>
+                                    <div class="option-content">
+                                        <div class="option-header">
+                                            <h4 data-i18n="delivery_express">Экспресс доставка</h4>
+                                            <span class="price">30 ег.ф.</span>
+                                        </div>
+                                        <p data-i18n="delivery_express_desc">Доставка в течение 30 минут</p>
+                                        <div class="option-badge">
+                                            <i class="fas fa-bolt"></i>
+                                            <span data-i18n="badge_popular">Популярно</span>
+                                        </div>
+                                    </div>
+                                </label>
+                                
+                                <label class="option-card">
+                                    <input type="radio" name="delivery" value="standard">
+                                    <div class="option-content">
+                                        <div class="option-header">
+                                            <h4 data-i18n="delivery_standard">Стандартная</h4>
+                                            <span class="price">15 ег.ф.</span>
+                                        </div>
+                                        <p data-i18n="delivery_standard_desc">Доставка в течение 2 часов</p>
+                                    </div>
+                                </label>
+                                
+                                <label class="option-card">
+                                    <input type="radio" name="delivery" value="pickup">
+                                    <div class="option-content">
+                                        <div class="option-header">
+                                            <h4 data-i18n="delivery_pickup">Самовывоз</h4>
+                                            <span class="price">Бесплатно</span>
+                                        </div>
+                                        <p data-i18n="delivery_pickup_desc">Заберите в аптеке</p>
+                                    </div>
+                                </label>
+                            </div>
+                            
+                            <div class="delivery-form">
+                                <div class="form-group">
+                                    <label data-i18n="form_address">Адрес доставки</label>
+                                    <input type="text" required placeholder="Улица, дом, квартира">
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label data-i18n="form_time">Время доставки</label>
+                                        <select>
+                                            <option data-i18n="time_asap">Как можно скорее</option>
+                                            <option data-i18n="time_specific">Конкретное время</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label data-i18n="form_date">Дата</label>
+                                        <input type="date">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Шаг 3: Оплата -->
+                        <div class="checkout-step" id="step-3">
+                            <div class="payment-options">
+                                <label class="option-card active">
+                                    <input type="radio" name="payment" value="cash" checked>
+                                    <div class="option-content">
+                                        <div class="option-header">
+                                            <h4 data-i18n="payment_cash">Наличные</h4>
+                                            <i class="fas fa-money-bill-wave"></i>
+                                        </div>
+                                        <p data-i18n="payment_cash_desc">Оплата при получении</p>
+                                    </div>
+                                </label>
+                                
+                                <label class="option-card">
+                                    <input type="radio" name="payment" value="card">
+                                    <div class="option-content">
+                                        <div class="option-header">
+                                            <h4 data-i18n="payment_card">Карта онлайн</h4>
+                                            <i class="fas fa-credit-card"></i>
+                                        </div>
+                                        <p data-i18n="payment_card_desc">Безопасная оплата картой</p>
+                                    </div>
+                                </label>
+                                
+                                <label class="option-card">
+                                    <input type="radio" name="payment" value="vodafone">
+                                    <div class="option-content">
+                                        <div class="option-header">
+                                            <h4 data-i18n="payment_vodafone">Vodafone Cash</h4>
+                                            <i class="fas fa-mobile-alt"></i>
+                                        </div>
+                                        <p data-i18n="payment_vodafone_desc">Оплата через Vodafone</p>
+                                    </div>
+                                </label>
+                            </div>
+                            
+                            <div class="payment-form" id="card-form" style="display: none;">
+                                <div class="form-group">
+                                    <label data-i18n="card_number">Номер карты</label>
+                                    <input type="text" placeholder="1234 5678 9012 3456">
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label data-i18n="card_expiry">Срок действия</label>
+                                        <input type="text" placeholder="ММ/ГГ">
+                                    </div>
+                                    <div class="form-group">
+                                        <label data-i18n="card_cvv">CVV</label>
+                                        <input type="text" placeholder="123">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label data-i18n="card_name">Имя на карте</label>
+                                    <input type="text" placeholder="ИМЯ ФАМИЛИЯ">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Шаг 4: Подтверждение -->
+                        <div class="checkout-step" id="step-4">
+                            <div class="order-summary">
+                                <h4 data-i18n="order_summary">Сводка заказа</h4>
+                                <div class="order-items">
+                                    <!-- Динамически генерируется -->
+                                </div>
+                                <div class="order-total">
+                                    <div class="total-row">
+                                        <span data-i18n="order_total">Итого к оплате:</span>
+                                        <strong id="final-total">0 ег.ф.</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="order-confirm">
+                                <div class="confirm-checkbox">
+                                    <input type="checkbox" id="confirm-terms" required>
+                                    <label for="confirm-terms" data-i18n="confirm_terms">
+                                        Я соглашаюсь с условиями обслуживания и политикой конфиденциальности
+                                    </label>
+                                </div>
+                                <div class="confirm-checkbox">
+                                    <input type="checkbox" id="confirm-marketing">
+                                    <label for="confirm-marketing" data-i18n="confirm_marketing">
+                                        Хочу получать новости и специальные предложения
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" id="prev-step">
+                        <i class="fas fa-arrow-left"></i>
+                        <span data-i18n="btn_prev">Назад</span>
+                    </button>
+                    <button class="btn btn-primary" id="next-step">
+                        <span data-i18n="btn_next">Далее</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                    <button class="btn btn-success" id="place-order" style="display: none;">
+                        <i class="fas fa-check"></i>
+                        <span data-i18n="btn_place_order">Подтвердить заказ</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Модальное окно заказа через WhatsApp -->
+        <div class="modal whatsapp-modal" id="whatsapp-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="whatsapp-icon">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <h3 data-i18n="whatsapp_title">Быстрый заказ через WhatsApp</h3>
+                    <button class="close-modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p data-i18n="whatsapp_desc">
+                        Ваш заказ будет отправлен в WhatsApp для быстрого оформления.
+                        Наш оператор свяжется с вами в течение 2 минут.
+                    </p>
+                    
+                    <div class="whatsapp-order">
+                        <!-- Динамически генерируется -->
+                    </div>
+                    
+                    <div class="whatsapp-actions">
+                        <a href="#" class="btn btn-whatsapp" id="send-whatsapp">
+                            <i class="fab fa-whatsapp"></i>
+                            <span data-i18n="btn_send_whatsapp">Отправить в WhatsApp</span>
+                        </a>
+                        <button class="btn btn-outline close-modal" data-i18n="btn_cancel">Отмена</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Уведомления -->
+        <div class="notifications-container" id="notifications"></div>
+        
+        <!-- Тост уведомления -->
+        <div class="toast-container" id="toast-container"></div>
+        
+        <!-- Звуки уведомлений -->
+        <audio id="notification-sound" preload="auto">
+            <source src="https://assets.mixkit.co/sfx/preview/mixkit-correct-answer-tone-2870.mp3" type="audio/mpeg">
+        </audio>
+        
+        <audio id="cart-sound" preload="auto">
+            <source src="https://assets.mixkit.co/sfx/preview/mixkit-cash-machine-purchase-1006.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+    
+    <!-- Основные стили -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Скрипты -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/luxon@3.3.0/build/global/luxon.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/speech-recognition-polyfill@latest/dist/speech-recognition-polyfill.min.js"></script>
+    
+    <script src="config.js"></script>
+    <script src="products.js"></script>
+    <script src="cart.js"></script>
+    <script src="ai.js"></script>
+    <script src="pharmacy.js"></script>
+    <script src="i18n.js"></script>
+    <script src="main.js"></script>
+    
+    <!-- Service Worker -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js')
+                .then(reg => console.log('Service Worker зарегистрирован:', reg))
+                .catch(err => console.log('Ошибка регистрации Service Worker:', err));
+        }
+    </script>
+</body>
+</html>
