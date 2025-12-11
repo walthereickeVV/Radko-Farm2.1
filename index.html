@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="ru" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Radko-Pharm | Умная аптека</title>
+    
+    <!-- Viewport фикс для iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    
+    <meta name="description" content="Radko-Pharm - первая умная аптека в Египте с AI-консультантом">
+    <meta name="keywords" content="аптека, лекарства, Египет, Radko-Pharm">
+    <meta name="author" content="Раед Махмуд Хейри Ахмед">
+    
+    <!-- Отключаем автоопределение телефонов -->
+    <meta name="format-detection" content="telephone=no">
+    
+    <!-- Иконки -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💊</text></svg>">
+    
+    <!-- Стили -->
+    <style>
+        /* Временные стили для быстрой загрузки */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            width: 100%;
+            max-width: 100%;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            color: white;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- Прелоадер -->
+    <div class="preloader" id="preloader">
+        <div>
+            <div style="font-size: 50px;">💊</div>
+            <h2 style="margin: 20px 0 10px;">Radko-Pharm</h2>
+            <p>Загрузка...</p>
+        </div>
+    </div>
+
+    <!-- Основной контейнер -->
+    <div class="page-container" id="main-content" style="display: none;">
+        <!-- Быстрый доступ -->
+        <div class="quick-access">
+            <a href="https://wa.me/201275929754" class="quick-btn whatsapp-btn" target="_blank">
+                💬
+            </a>
+            <a href="tel:+201275929754" class="quick-btn call-btn">
+                📞
+            </a>
+            <button class="quick-btn cart-quick" id="cart-btn">
+                🛒
+                <span class="cart-badge">0</span>
+            </button>
+        </div>
+
+        <!-- Шапка -->
+        <header class="header">
+            <div class="header-container">
+                <div class="logo">
+                    <span class="logo-icon">💊</span>
+                    <div class="logo-text">
+                        <h1>Radko-Pharm</h1>
+                        <p>Эль-Ашрин, Египет</p>
+                    </div>
+                </div>
+                
+                <button class="menu-toggle" id="menu-toggle">
+                    ☰
+                </button>
+            </div>
+            
+            <!-- Меню -->
+            <nav class="main-nav" id="main-nav">
+                <a href="#home" class="nav-link active">Главная</a>
+                <a href="#products" class="nav-link">Товары</a>
+                <a href="#ai-doctor" class="nav-link">AI Консультант</a>
+                <a href="#services" class="nav-link">Услуги</a>
+                <a href="#reviews" class="nav-link">Отзывы</a>
+                <a href="#contact" class="nav-link">Контакты</a>
+            </nav>
+        </header>
+
+        <!-- Главный экран -->
+        <section class="hero" id="home">
+            <div class="hero-content">
+                <div class="hero-badge">🏆 Лучшая в Египте</div>
+                
+                <h1 class="hero-title">Умная аптека в Эль-Ашрин</h1>
+                
+                <p class="hero-subtitle">
+                    Первая аптека с AI-консультантом и доставкой за 30 минут
+                </p>
+                
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">1500+</div>
+                        <div class="stat-label">товаров</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">работаем</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">5000+</div>
+                        <div class="stat-label">клиентов</div>
+                    </div>
+                </div>
+                
+                <div class="hero-buttons">
+                    <button class="btn primary" id="consult-btn">
+                        🗣️ Бесплатная консультация
+                    </button>
+                    <button class="btn secondary" id="products-btn">
+                        🛍️ Смотреть товары
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Владелец -->
+        <section class="owner-section">
+            <div class="section-title">👑 Владелец</div>
+            
+            <div class="owner-card">
+                <div class="owner-photo">
+                    👨‍⚕️
+                </div>
+                
+                <div class="owner-info">
+                    <h3>Раед Махмуд Хейри Ахмед</h3>
+                    <p class="owner-subtitle">Владелец аптеки</p>
+                    
+                    <div class="owner-contact">
+                        <p>📞 <strong>+20 127 592 9754</strong></p>
+                        <p>📄 Лицензия: <strong>JT5179743</strong></p>
+                        <p>📍 Эль-Ашрин, Египет</p>
+                    </div>
+                    
+                    <div class="owner-quote">
+                        "Ваше здоровье — наш главный приоритет"
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Товары -->
+        <section class="products-section" id="products">
+            <div class="section-title">💊 Наши товары</div>
+            
+            <div class="products-filter">
+                <button class="filter-btn active" data-filter="all">Все</button>
+                <button class="filter-btn" data-filter="antibiotics">Антибиотики</button>
+                <button class="filter-btn" data-filter="painkillers">Обезболивающие</button>
+                <button class="filter-btn" data-filter="vitamins">Витамины</button>
+            </div>
+            
+            <div class="products-grid" id="products-grid">
+                <!-- Товары загружаются через JS -->
+            </div>
+        </section>
+
+        <!-- AI Консультант -->
+        <section class="ai-section" id="ai-doctor">
+            <div class="section-title">🤖 AI Консультант</div>
+            
+            <div class="ai-chat">
+                <div class="chat-messages" id="chat-messages">
+                    <div class="message ai">
+                        <div class="avatar">🤖</div>
+                        <div class="content">
+                            Привет! Я Dr. DeepSeek. Могу помочь с медицинскими вопросами.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="chat-input">
+                    <input type="text" id="message-input" placeholder="Задайте вопрос...">
+                    <button id="send-btn">📤</button>
+                </div>
+                
+                <div class="quick-questions">
+                    <button class="quick-btn" data-question="дозировка">Дозировка</button>
+                    <button class="quick-btn" data-question="побочные эффекты">Побочные эффекты</button>
+                    <button class="quick-btn" data-question="совместимость">Совместимость</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Отзывы -->
+        <section class="reviews-section" id="reviews">
+            <div class="section-title">⭐ Отзывы</div>
+            
+            <div class="reviews-container">
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="avatar">👤</div>
+                        <div>
+                            <h4>Ахмед М.</h4>
+                            <div class="stars">★★★★★</div>
+                        </div>
+                    </div>
+                    <p class="review-text">Лучшая аптека! Быстрая доставка и профессиональный сервис.</p>
+                </div>
+                
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="avatar">👤</div>
+                        <div>
+                            <h4>Сара К.</h4>
+                            <div class="stars">★★★★☆</div>
+                        </div>
+                    </div>
+                    <p class="review-text">AI-консультант очень помог с выбором лекарства. Спасибо!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Контакты -->
+        <section class="contact-section" id="contact">
+            <div class="section-title">📞 Контакты</div>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="icon">📍</div>
+                    <div>
+                        <h4>Адрес</h4>
+                        <p>Эль-Ашрин, Египет</p>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="icon">📞</div>
+                    <div>
+                        <h4>Телефон</h4>
+                        <p><a href="tel:+201275929754">+20 127 592 9754</a></p>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="icon">🕒</div>
+                    <div>
+                        <h4>График работы</h4>
+                        <p>24/7, без выходных</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="contact-buttons">
+                <a href="https://wa.me/201275929754" class="whatsapp-btn" target="_blank">
+                    💬 WhatsApp
+                </a>
+                <a href="tel:+201275929754" class="call-btn">
+                    📞 Позвонить
+                </a>
+            </div>
+        </section>
+
+        <!-- Подвал -->
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    💊 Radko-Pharm
+                </div>
+                
+                <p class="footer-text">
+                    Умная аптека в Эль-Ашрин, Египет
+                </p>
+                
+                <div class="footer-info">
+                    <p>Владелец: Раед Махмуд Хейри Ахмед</p>
+                    <p>Лицензия: JT5179743</p>
+                    <p>© 2024 Radko-Pharm. Все права защищены.</p>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Корзина -->
+        <div class="cart-sidebar" id="cart-sidebar">
+            <div class="cart-header">
+                <h3>🛒 Корзина</h3>
+                <button class="close-cart" id="close-cart">✕</button>
+            </div>
+            <div class="cart-items" id="cart-items">
+                <p class="empty-cart">Корзина пуста</p>
+            </div>
+            <div class="cart-footer">
+                <div class="cart-total">
+                    <span>Итого:</span>
+                    <span id="cart-total">0 ег.ф.</span>
+                </div>
+                <button class="checkout-btn" id="checkout-btn">
+                    Оформить заказ
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Основные стили -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Скрипты -->
+    <script src="script.js"></script>
+</body>
+</html>
