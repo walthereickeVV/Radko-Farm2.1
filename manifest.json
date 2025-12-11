@@ -1,0 +1,62 @@
+{
+  "name": "Radko-Pharm",
+  "short_name": "RadkoPharm",
+  "description": "Первая AI-аптека премиум-класса в Египте",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#1A1A2E",
+  "theme_color": "#00C897",
+  "scope": "/",
+  "lang": "ru",
+  
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%2300C897%22/><text x=%2250%22 y=%2265%22 font-size=%2260%22 text-anchor=%22middle%22 fill=%22white%22>💊</text></svg>",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  
+  "categories": [
+    "health",
+    "medical",
+    "shopping",
+    "productivity"
+  ],
+  
+  "shortcuts": [
+    {
+      "name": "Новый заказ",
+      "short_name": "Заказать",
+      "description": "Быстрый заказ лекарств",
+      "url": "/#products"
+    },
+    {
+      "name": "AI Консультант",
+      "short_name": "AI Доктор",
+      "description": "Консультация с AI помощником",
+      "url": "/#ai-doctor"
+    },
+    {
+      "name": "Моя аптечка",
+      "short_name": "Аптечка",
+      "description": "Управление лекарствами",
+      "url": "/#pharmacy"
+    }
+  ],
+  
+  "features": [
+    "webgl",
+    "geolocation",
+    "notifications",
+    "payment",
+    "speech-recognition",
+    "microphone"
+  ],
+  
+  "display_override": ["window-controls-overlay", "minimal-ui"],
+  
+  "dir": "ltr"
+}
